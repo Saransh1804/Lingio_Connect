@@ -9,10 +9,13 @@ const Header = () => {
   const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
+      
     };
+
 
     window.addEventListener('resize', handleResize);
 
@@ -33,13 +36,15 @@ const Header = () => {
           
           <NavbarOptions />
         ) : (
-          // Render components for larger screens
+       
           <div className='flex gap-4 justify-between items-center mr-6 max-[546px]:mr-0 max-[546px]:gap-2 '>
             {isAuthenticated && (
               <Link to={"/AddTutor"} className='hover:bg-black hover:cursor-pointer text-white border max-[546px]:px-1 max-[546px]:text-sm px-3 py-1 border-slate-100 rounded'>Add Tutor</Link>
 
             )}
-            <Link to={`/my-tutors`} className='hover:bg-black max-[546px]:px-1 max-[546px]:text-sm hover:cursor-pointer text-white border px-3 py-1 border-slate-100 rounded'>My Tutors</Link>
+            <Link to={`/my-tutors`} className='hover:bg-black max-[546px]:px-1 max-[546px]:text-sm hover:cursor-pointer text-white border px-3 py-1 border-slate-100 rounded'>
+            My Tutors
+            </Link>
             <button onClick={!isAuthenticated ? () => loginWithRedirect() : () => logout({ logoutParams: { returnTo: window.location.origin } })} className='hover:bg-black max-[546px]:px-1 max-[546px]:text-sm hover:cursor-pointer text-white border px-3 py-1 border-slate-100 rounded'>{isAuthenticated ? "Logout" : "Login"}</button>
           </div>
         )}

@@ -10,14 +10,14 @@ const TutorCard = ({tutor}) => {
   
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate()
+
+
   return (
-    //border-2 rounded-md border-cyan-950 min-[1000px]:flex min-[1000px]:w-2/3  justify-between  p-3
     <div  className='flex gap-10'>
 
-   
     <div className='border-2 rounded-md border-cyan-950 grid min-[869px]:w-2/3  grid-cols-3 p-3 max-[970px]:grid-cols-1 '
-    onMouseEnter={() => setIsHovered(true)} // Set isHovered to true on mouse enter
-        onMouseLeave={() => setIsHovered(false)} // Set isHovered to false on mouse leave
+    onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)} 
         >
        <div className='grid grid-cols-3 col-span-2 max-[681px]:grid-cols-1 ' >
        <div className='   p-3 col-span-1   '>
