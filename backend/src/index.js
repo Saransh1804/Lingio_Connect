@@ -37,7 +37,7 @@ app.use(cors(
 
 app.use("/api/auth",authRoutes)
 app.use("/api/tutor", tutorRoutes)
-app.use("/api/message", messageRoutes)
+
 
 app.use(express.static(path.join(__dirname, "../frontend/dist")))
 
