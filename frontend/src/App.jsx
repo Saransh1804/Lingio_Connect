@@ -17,6 +17,7 @@ import { useAppContext } from './context/AppContext'
 import MyTutors from './pages/MyTutors'
 import Learning from './pages/Learning'
 import VideoCall from './pages/VideoCall'
+import Reviews from './pages/Reviews'
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
        <Route path='/my-tutors' element= {<MyTutors />} />
        <Route path='/details/:id' element= {<Details />} />
        <Route path='/booking/:id' element= { <Booking /> } />
+       <Route path='/reviews/:id' element= { <Reviews /> } />
        <Route path='/videoCall/:tutorId/:studentId/:studentName' element= { <VideoCall /> } />
        
       

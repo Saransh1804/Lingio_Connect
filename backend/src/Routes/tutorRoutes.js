@@ -44,11 +44,22 @@ router.post("/", async(req, res)=>{
   
 })
 
-router.get("/allTutors", async(req, res)=>{
+router.get("/allTutors/:page", async(req, res)=>{
     try{
-        const tutors = await Tutor.find()
-        // console.log(tutors)
-        res.json(tutors)
+        const page = parseInt(req.params.page, 10) || 1; // Default to page 1 if not provided
+        const limit = 5; // Number of tutors per page
+        const skip = (page - 1) * limit;
+
+        const tutors = await Tutor.find().skip(skip).limit(limit);
+        const totalTutors = await Tutor.countDocuments();
+        const totalPages = Math.ceil(totalTutors / limit);
+
+        res.json({
+            page,
+            totalPages,
+            totalTutors,
+            tutors
+        });
     }
     catch(error){
         console.log(error)
@@ -61,8 +72,25 @@ router.get("/tutorsBasedOnSearch", async(req, res)=>{
 
     const query = constructSearchQuery(req.query);
 
-    const tutors = await Tutor.find(query)
-    res.json(tutors)
+    const pageSize = 5;
+    const pageNumber = parseInt(req.query.page ?req.query.page.toString() : "1")
+
+    const skip = (pageNumber - 1) *pageSize
+
+
+
+    const tutors = await Tutor.find(query).skip(skip).limit(pageSize)
+    const total = await Tutor.countDocuments(query)
+
+    const response = {
+        data : tutors, 
+        pagination :{
+            total, 
+            page:pageNumber, 
+            pages : Math.ceil(total/ pageSize)
+        }
+    }
+    res.json(response)
 
 })
 router.get("/:id", async(req, res) => {
@@ -99,7 +127,7 @@ router.post("/payment-intent", async(req, res)=>{
             return res.status(400).json({message: "Tutor not found"})
 
         const paymentIntent = await stripe.paymentIntents.create({
-            amount : tutor.cost,
+            amount : tutor.cost *100 + 4999,
             currency :"inr",
             metadata:{
                 tutorId,
@@ -244,6 +272,35 @@ router.post("/getToken",async(req, res)=>{
     
 })
 
+router.post("/sendReview", async(req, res)=>{
+    const {newReview} = req.body
+    console.log(newReview.student)
+    const tutorId = newReview.tutorId
+
+   
+    const review = {
+        student : newReview.student,
+        rating : newReview.rating,
+        description: newReview.description
+    }
+    const tutor = await Tutor.findOneAndUpdate(
+        { _id: tutorId },
+        {
+          $push: { reviews: review },
+        }
+      );
+
+      if (!tutor) {
+        return res.status(400).json({ message: "tutor not found" });
+      }
+
+
+      await tutor.save();
+      res.status(200).json(tutor);
+  
+
+})
+
    
 
 
@@ -294,6 +351,3 @@ const constructSearchQuery = (queryParams)=>{
         return constructedQuery
 
 }
-
-
-
