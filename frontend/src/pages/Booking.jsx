@@ -30,12 +30,11 @@ const Booking = () => {
     const {data :currentUser} = useQuery(["fetchCurrentUser", user?.sub], ()=> apiClient.fetchCurrentUser(user.sub),{
       enabled:!!user
     })
-    
+  
 
     const userId = currentUser?._id
     const {data : paymentIntentData} = useQuery(["createPaymentIntent", id,userId ], ()=>apiClient.createPaymentIntent(id, userId), {
       enabled:!!id && !!userId
-
     })
 
 

@@ -93,3 +93,65 @@ router.get("/tutorsBasedOnSearch", async(req, res)=>{
     res.json(response)
 
 })
+router.get("/:id", async(req, res) => {
+    try {
+        const id = req.params.id.toString();
+        const tutor = await Tutor.findById(id); 
+        res.send(tutor);
+    } catch(error) {
+        console.log(error);
+        res.status(500).json({ message: "Something went wrong in fetching tutor by id" });
+    }
+});
+router.post("/otherTutors", async(req, res)=>{
+    try{
+        const {language, id} = req.body
+        const otherTutors = await Tutor.find({language : language , _id : {$ne : id} })
+
+        res.status(200).json(otherTutors)
+    }
+    catch(error)
+    {
+        console.log(error)
+        res.status(500).json({message : "Something went wrong in fetching other tutors"})
+    }
+})
+
+router.post("/payment-intent", async(req, res)=>{
+    try{
+        const {tutorId, userId} = req.body
+
+        const tutor = await Tutor.findById(tutorId)
+    
+        if(!tutor)
+            return res.status(400).json({message: "Tutor not found"})
+
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount : tutor.cost *100 + 4999,
+            currency :"inr",
+            metadata:{
+                tutorId,
+                userId
+            }
+        })
+
+        if(!paymentIntent.client_secret)
+            {
+                return res.status(500).json({ message: "Error creating payment intent" });
+
+            }
+        const response = {
+            paymentIntentId : paymentIntent.id, 
+            clientSecret : paymentIntent.client_secret.toString(),
+
+        }
+        res.status(201).json(response)
+    
+    }
+    catch(error){
+        console.log(error)
+        res.status(500).json({message : "Something went wrong in creating payment intent"})
+    }
+   
+
+})

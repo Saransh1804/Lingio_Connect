@@ -8,7 +8,7 @@ import tutorRoutes from "./Routes/tutorRoutes.js"
 import messageRoutes from "./Routes/messageRoutes.js"
 import {v2 as cloudinary} from "cloudinary"
 import path from "path"
-import  {app, server, io} from "./socket/socket.js"
+import  {app, server, io} from "./lingio_connect/backend/src/Socket/socket.js"
 
 
 const __dirname = path.resolve()
@@ -37,7 +37,7 @@ app.use(cors(
 
 app.use("/api/auth",authRoutes)
 app.use("/api/tutor", tutorRoutes)
-
+app.use("/api/message", messageRoutes)
 
 app.use(express.static(path.join(__dirname, "../frontend/dist")))
 

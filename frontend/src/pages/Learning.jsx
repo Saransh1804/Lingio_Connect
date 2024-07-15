@@ -46,7 +46,6 @@ const Learning = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!message) return;
-
         const newMessage = { id, userId, message };
         // mutation.mutate(newMessage);
 
@@ -61,8 +60,6 @@ const Learning = () => {
             if (!message) return;
 
             const newMessage = { id, userId, message };
-            // mutation.mutate(newMessage);
-
             socket.emit('sendMessage', { senderId: userId, receiverId: id, message });
 
             setMessage("");

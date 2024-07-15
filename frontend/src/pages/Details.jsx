@@ -12,7 +12,6 @@ const Details = () => {
     const navigate = useNavigate()
 
     const {data : tutor} = useQuery(["fetchTutorById", id], ()=> apiClient.fetchTutorById(id))
-
        
     const {data : otherTutors} = useQuery(["fetchOtherTutors", tutor?.language, tutor?._id], ()=> apiClient.fetchOtherTutors(tutor?.language, tutor?._id))
 

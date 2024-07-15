@@ -72,8 +72,6 @@ const BookingForm = ({currentUser, paymentIntentData, tutorId}) => {
       }
 
       setIsSubmitting(false)
-
-
     }
       const cardElementOptions = {
         style: {
