@@ -28,6 +28,8 @@ router.post("/", async(req,res)=>{
     
 })
 
+
+
 router.get("/current-user/:auth0Id", async(req, res)=>{
     try{
         const auth0Id = req.params.auth0Id

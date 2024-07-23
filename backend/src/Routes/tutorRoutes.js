@@ -46,8 +46,8 @@ router.post("/", async(req, res)=>{
 
 router.get("/allTutors/:page", async(req, res)=>{
     try{
-        const page = parseInt(req.params.page, 10) || 1; // Default to page 1 if not provided
-        const limit = 5; // Number of tutors per page
+        const page = parseInt(req.params.page, 10) || 1; 
+        const limit = 5; 
         const skip = (page - 1) * limit;
 
         const tutors = await Tutor.find().skip(skip).limit(limit);

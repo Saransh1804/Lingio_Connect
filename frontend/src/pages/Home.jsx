@@ -3,13 +3,13 @@ import Header from "../components/Header";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation, useQuery } from "react-query";
 import * as apiClient from "../apiClient.js";
-// import "rc-slider/assets/index.css";
 import TutorCard from "../components/TutorCard.jsx";
 import SearchBar from "../components/SearchBar.jsx";
 
 const Home = () => {
 
   const mutation = useMutation(apiClient.auth);
+
 
   useEffect(() => {
     const helper = async () => {
@@ -32,11 +32,7 @@ const Home = () => {
 
   const { user, isAuthenticated } = useAuth0();
 
-  const {
-    data: tutors,
-    isLoading,
-    isError,
-  } = useQuery("fetchTutors", async () => await apiClient.fetchTutors());
+  const {data: tutors,isLoading,isError} = useQuery("fetchTutors", async () => await apiClient.fetchTutors());
   
 
   return (

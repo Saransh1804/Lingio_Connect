@@ -6,8 +6,7 @@ export const auth = async (user) => {
       method:'POST',
       credentials: "include",
       headers:{
-          "Content-Type":"application/json",
-          
+          "Content-Type":"application/json",  
       },
       body : JSON.stringify(user),
   });
@@ -17,6 +16,8 @@ export const auth = async (user) => {
   console.log(response)
   return response.json();
 };
+
+
 
 export const addTutor = async(data)=>{
  

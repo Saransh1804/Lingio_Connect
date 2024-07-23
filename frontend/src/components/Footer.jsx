@@ -14,6 +14,7 @@ const Footer = () => {
             }
         },20 ); 
     }
+    
   return (
     <div className='bg-cyan-950 p-2 items-center mt-10 flex justify-between'>
         <div className='flex items-center p-3 mb-2 ml-1'>

@@ -5,9 +5,12 @@ import { IoLanguage } from "react-icons/io5";
 
 const Working = () => {
   return (
-    <div className='flex flex-col w-full whitespace-nowrap overflow-x-auto  mt-4 p-6 gap-8'>
-    <div>
-    <span className='flex-wrap   text-white text-6xl font-bold max-[831px]:text-4xl max-[515px]:whitespace-normal '>How Lingio-Connect works: </span>
+    <div className='flex flex-col w-full whitespace-nowrap overflow-x-auto  mt-4 p-6 gap-8'><div>
+
+    <span className='flex-wrap   text-white text-6xl font-bold max-[831px]:text-4xl max-[515px]:whitespace-normal '>
+    How Lingio-Connect works: 
+    </span>
+
     </div>
     <div className='flex overflow-x-auto items-center gap-6 '>
     <div className='flex border-4  rounded-md border-cyan-950  flex-col p-3    gap-3 '>
@@ -26,7 +29,7 @@ const Working = () => {
     <div className='p-4 flex flex-col '>
     <div className='flex bg-black  rounded-lg p-3 gap-3 border border- z-30 mr-10'>
     <div className=' flex items-center  bg-contain bg-center  bg-no-repeat w-28' style ={{backgroundImage:"url('https://preply.com/cdn-cgi/image/format=auto,fit=contain,width=400/https://static.preply.com/static/ssr/_next/static/images/Milena-6565f848c6ee914e0d7c853e6aab5b3b.jpg')"}}>
-    {/* <img className=' h-28' src='https://preply.com/cdn-cgi/image/format=auto,fit=contain,width=400/https://static.preply.com/static/ssr/_next/static/images/Milena-6565f848c6ee914e0d7c853e6aab5b3b.jpg' alt='dskjhfdskj'  /> */}
+  
     </div>
     <div className='flex-1 flex text-white flex-col gap-2'>
         <div className='flex justify-between text-2xl'>
