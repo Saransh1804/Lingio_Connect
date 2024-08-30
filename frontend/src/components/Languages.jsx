@@ -35,7 +35,6 @@ const Languages = () => {
      <LanguageCard language={"Portugese"}  />
     </motion.div>
       
-   
   )
 }
 

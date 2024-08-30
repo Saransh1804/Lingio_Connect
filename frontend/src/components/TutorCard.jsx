@@ -10,8 +10,6 @@ const TutorCard = ({tutor}) => {
   
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate()
-
-
   return (
     <div  className='flex gap-10'>
 
@@ -25,8 +23,6 @@ const TutorCard = ({tutor}) => {
         src={tutor.image}>
       </img>
       </div>
-
-
 
       <div className='flex flex-col  col-span-2 p-2 gap-3 flex-auto  text-white ' >
       <h2 className='text-2xl font-bold'>
